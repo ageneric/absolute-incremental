@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8" />
+  <title>(index.) Absolute</title>
+  <link href="color.css" rel="stylesheet"/>
+  <link href="sheets/styles.css" rel="stylesheet"/>
+  <link href="sheets/props.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="app">
+  <div id="top" class="bar">
+    <image id="logo" src="logo_0.png"></image>
+    <button id="pause" class="small"><b>| |</b></button><span style="margin-left: 0.5em; font-size: 13.333px">Pause</span>
+  </div>
+  
+  <div id="container" class="wrapper">
+    <div class="player page-structure">
+        Placeholder for player data.<br>
+        <span id="infusion-reading">Infusion is not unlocked.</span>
+    </div>
+    <div class="core">
+      <div id="temperature-bar">
+        <button id="btn-cold" class="btn-manual flex-equal">Cold -<div id="fill-cold" class="fill"></div></button>
+        <div id="temperature-reading">
+            <div id="value-reading">
+                <span id="temperature-text">0.0</span><span id="temperature-unit">g</span>
+            </div>
+            <div id="delta-reading">
+                <span id="delta-text">0.0</span><span id="temperature-unit">g/s</span>
+            </div>
+        </div>
+        <button id="btn-hot" class="btn-manual flex-equal">+ Hot<div id="fill-hot" class="fill"></div></button>
+      </div>
+      <div id="decay-measure"></div>
+      <div id="absolute-zero-measure"></div>
+    </div>
+    <div class="action page-structure">
+      <div id="action-controls">
+        <button id="sell-all" class="panel btn-cooldown">Sell All</button>
+      </div>
+      <div>
+        <button id="generator-cold-1" class="ribbon buy-cold">Engine</button><span class="generator-info">+6 (-0.5/s)</span>
+      </div>
+      <div>
+        <button id="generator-hot-1" class="ribbon buy-hot">Engine</button><span class="generator-info">-6 (+0.5/s)</span>
+      </div>
+      <div id="infusion" style="display:none">
+        <button id="btn-infusion" class="ribbon" disabled>Infusion</button><span class="generator-info">*Upgrade</span>
+      </div>
+    </div>
+  </div>
+  
+  <div id="bottom" class="bar"></div>
+  
+  <!-- js -->
+  <script src="deps/jquery-3.5.1.min.js"></script>
+  <script src="deps/vue.js"></script>
+  <script src="deps/skip-transition.js"></script>
+  <script src="scripts/values.js"></script>
+  <script src="scripts/Button.js"></script>
+  <script src="scripts/main.js"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+:root {
+  --background-dark: #2c2b29;
+  --primary: #eceff6;
+  --structure: #343538;
+  
+  --warm: #fad4bc;
+  --cool: #bcf8fa;
+  --warm-fill: #fad4bc66;
+  --cool-fill: #bcf8fa66;
+  --cooldown: #888;
+  --faded: #787b80;
+  
+  /* Buttons */
+  --btn-hot-clicked-color: #ffc3a8;
+  --btn-cold-clicked-color: #a9e4f5;
+  
+  --button-clicked-color: #b4b7be;
+  --button-disabled-color: #9ea6a8;
+  --button-hovered-background: #8882;
+  --button-disabled-background: #0002;
+}

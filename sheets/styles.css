@@ -1,0 +1,181 @@
+html, body, div, span, applet, object, iframe,
+a, b, u, i {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #app {
+  min-height: 100vh;
+}
+
+
+body {
+  font: 1em sans-serif;
+  margin: 0;
+  
+  color: var(--primary);
+  background-color: var(--background-dark);
+}
+
+.wrapper {
+  display: -ms-flexbox; display: -webkit-flex; display: -moz-box;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+#container {
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  margin: auto auto;
+  bottom: 0em;
+  top: 0em;
+  position: relative;
+}
+
+.bar {
+  display: -ms-flexbox; display: -webkit-flex; display: -moz-box;
+  display: flex;
+  flex-direction: row;
+  
+  width: 100%;
+  height: 2.4em;
+  padding: 0 0.5em;
+  
+  background-color: var(--structure);
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#top,
+#bottom {
+  user-select: none;
+  position: relative;
+}
+#top {
+  top: 0;
+  z-index: 1;
+}
+#bottom {
+  bottom: 0;
+}
+
+.page-structure {
+  padding: 0.8em 0.8em;
+  padding-top: 1.5em;
+  /* border: solid 1px var(--structure); (debug purposes)*/
+}
+
+#infusion-reading {
+  color: var(--faded);
+}
+
+.action {
+  min-width: 6em;
+  flex: 1;
+}
+
+#action-controls {
+  padding: 1em 0;
+}
+
+.core {
+  min-width: 6em;
+  padding-top: 1.5em;
+  flex: 1.8;
+  user-select: none;
+  min-height: 100%;
+  /* color changes based on temperature -> neutral #192119 */
+  background-color: #292a29;
+  transition: background-color 1s linear;
+}
+
+.player {
+  min-width: 6em;
+  flex: 1;
+}
+
+.flex-equal {
+  flex: 1;
+}
+
+#temperature-bar {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  margin-top: 2em;
+  margin-bottom: 5.6em;
+  padding: 0.2em 0.5em;
+  background-color: var(--structure);
+}
+
+#temperature-reading {
+  flex: 1.8;
+  margin: auto auto;
+  text-align: center;
+  font-family: Roboto, monospace;
+}
+
+#temperature-unit {
+  font-size: 0.7rem;
+  vertical-align: top;
+}
+
+#value-reading {
+  font-size: 1.3em;
+}
+#delta-reading {
+  font-size: 0.7em;
+}
+
+.fill {
+  transition: width 0.1s linear;
+}
+
+#fill-hot {
+  background-color: var(--warm-fill);
+}
+#fill-cold {
+  background-color: var(--cool-fill);
+}
+
+.generator-info {
+  font-size: 0.9em;
+  font-family: monospace;
+}
+
+#logo {
+  position: inherit;
+  margin-right: 2em;
+}
+
+
+/* Increase size and whitespace for large windows */
+@media only screen and (min-width: 1180px) {
+  body {
+    font-size: 1.2em;
+  }
+  #container {
+    width: 80%;
+  }
+}
+@media only screen and (min-width: 1720px) {
+  body {
+    font-size: 1.4em;
+  }
+  #container {
+    width: 60%;
+  }
+}
+
+/* Vertical layout for mobile / small windows. */
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    flex-direction: column;
+  }
+}

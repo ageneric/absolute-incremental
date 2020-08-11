@@ -1,0 +1,126 @@
+/* Buttons */
+button {
+  position: relative;
+  border-radius: 3px;
+  border: solid 1px;
+  outline: none;
+  font-size: 75%;
+  
+  color: var(--primary);
+  background: transparent;
+  overflow: hidden;
+  cursor: pointer;
+}
+  button:hover {
+  background: var(--button-hovered-background);
+}
+  button:active, button:focus {
+  outline: none;
+}
+  button:active {
+  color: var(--button-clicked-color);
+}
+
+.panel {
+  position: relative;
+  min-height: 3em;
+  min-width: 9em;
+}
+
+.btn-manual:active,
+.panel:active {
+  transform: scale(0.98);
+}
+
+.ribbon {
+  position: relative;
+  min-height: 2em;
+  min-width: 9em;
+}
+.small {
+  position: relative;
+  min-height: 2em;
+  min-width: 4em;
+}
+
+#btn-hot {
+  color: var(--warm);
+  min-width: 0;
+}
+  #btn-hot:active {
+  color: var(--btn-hot-clicked-color);
+}
+
+#btn-cold {
+  color: var(--cool);
+  min-width: 0;
+}
+  #btn-cold:active {
+  color: var(--btn-cold-clicked-color);
+}
+
+
+.btn-manual {
+  min-height: 3em;
+}
+
+.btn-action {
+  
+}
+
+.btn-cooldown {
+
+}
+  .btn-cooldown:disabled {
+  color: var(--button-disabled-color);
+  background: var(--button-disabled-background);
+  cursor: default;
+}
+  .btn-cooldown:disabled:after {
+  content: "";
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+       /* create a new stacking context */
+  position: absolute;
+       /* to be below the parent element */
+  z-index: -1;
+  background: var(--cooldown);
+  animation: cooldown 8s linear;
+}
+
+.buy-cold {
+  color: var(--cool);
+}
+.buy-hot {
+  color: var(--warm);
+}
+.buy-cold,
+.buy-hot {
+  margin-right: 0.5em;
+  margin-bottom: 0.2em;
+}
+
+@keyframes cooldown {
+  0% { width: 100%; }
+  100% { width: 0; }
+}
+
+.fill {
+  bottom: 0;
+  left: 0;
+  height: 100%;
+       /* create a new stacking context */
+  position: absolute;
+       /* to be below the parent element */
+  z-index: 0;
+  background: var(--cooldown);
+    overflow: hidden;
+}
+
+#absolute-zero-measure,
+#decay-measure {
+  background-color: var(--cooldown);
+  width: 0%;
+}
