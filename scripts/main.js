@@ -1,94 +1,41 @@
-var temperature = 0.0;
-var clickMomentum = 0.0;
+var temperature = 0.0; // Main currency where negative is cold and positive is hot.
+var clickMomentum = 0.0; // Clicks contribute temperature over time. Ranges from -1 to 1.
 
-var delta = 0.0;
+var delta = 0.0; // Change in temperature since last cycle.
 var generating = 0.0;
 var worldLeak = 1.0;
 
 var absoluteZeroPoint = -500;
 
-var maxTemperatureExponent = 308;
+var maxTemperatureExponent = 308; // Limit of 1e308.
 var decayTruncate = 1e2;
 var decayZeroOffset = Math.max(1, 0.99 + 1/maxTemperatureExponent * Math.log10(decayTruncate));
 
 var playing = true;
 var infinity = false;
 
-/* See docs */
-var clickBase = 0.25;
-var clickInfusion = 0.0;
-var clickLinearDecay = 0.05;
-var clickExponentialDecay = 1.0;
+var clickBase = 0.25; // A direct multiplier on click power
+var clickInfusion = 0.0; // Multiplier on click power based on root(temperature)
+var clickLinearDecay = 0.05; // Constant "momentum" reduction per cycle. Higher values reduce "momentum" to zero faster.
+var clickExponentialDecay = 1.0; // Reduces "momentum" from a click exponentially faster over time, based on this factor.
 
-$(".btn-cooldown").click(function(){
-  let btn = $(this);
-  btn.prop("disabled", true);
-  setTimeout(function(){
-    btn.prop("disabled", false);
-  }, 8000);
-});
-
-$("#btn-hot").click(function(){
-  clickMomentum = 1;
-  StokeButton.instantFill($("#btn-hot"), "fill-hot");
-});
-
-$("#btn-cold").click(function(){
-  clickMomentum = -1;
-  StokeButton.instantFill($("#btn-cold"), "fill-cold");
-});
-
-$("#btn-infusion").click(function(){
-  clickInfusion += 0.1;
-  $("#btn-infusion").prop("disabled", true)
-  $("#infusion").css("display", "none")
-});
-
-$("#pause").click(function(){
-  playing = !playing;
-  if (playing) {
-    $("#pause").removeAttr("style");
-  }
-  else {
-    $("#pause").css("background-color", "var(--cooldown)")
-  }
-});
-
-/* Example generators */
-$("#generator-cold-1").click(function(){
-  if (temperature >= 6) {
-    generating -= 0.5 / 10;
-    temperature -= 6;
-  }
-});
-
-$("#generator-hot-1").click(function(){
-  if (temperature <= 6) {
-    generating += 0.5 / 10;
-    temperature += 6;
-  }
-});
-
-$("#sell-all").click(function(){
-  generating = 0;
-});
 
 function pretty(value, maxDecimalPlaces = 2) {
   if (value > 0) {
     if (Math.abs(value) < 1)
-      return "+" + value.toFixed(maxDecimalPlaces);
+      return "+" + value.toFixed(maxDecimalPlaces)
     else if (Math.abs(value) < 1e3)
-      return "+" + value.toPrecision(3);
+      return "+" + value.toPrecision(3)
     else
-      return "+e" + Math.log10(value).toFixed(1);
+      return "+e" + Math.log10(value).toFixed(1)
   }
   else {
     if (Math.abs(value) < 1)
-      return value.toFixed(maxDecimalPlaces);
+      return value.toFixed(maxDecimalPlaces)
     else if (Math.abs(value) < 1e3)
-      return value.toPrecision(3);
+      return value.toPrecision(3)
     else
-      return "-e" + Math.log10(-value).toFixed(1);
+      return "-e" + Math.log10(-value).toFixed(1)
   }
 }
 
@@ -113,9 +60,6 @@ function updateDisplayLate() {
     $("#infusion-reading").html("Your clicks are infused and are " + pretty(
       (clickInfusion*Math.sqrt(Math.abs(temperature))), 1) + "x stronger.")
   }
-  else {
-    $("#infusion-reading").html("Infusion is not unlocked.")
-  }
   
   /* Example generators */
   if (temperature < 6)
@@ -139,12 +83,10 @@ function cycleClick() {
 
   clickMagnitude -= (1 - clickMagnitude)*clickExponentialDecay + clickLinearDecay
   
-  if (hot) {
+  if (hot) 
     clickMomentum = Math.max(0, clickMagnitude)
-  }
-  else {
+  else
     clickMomentum = -Math.max(0, clickMagnitude)
-  }
 }
 
 function cycle() {
@@ -156,10 +98,11 @@ function cycle() {
     if (temperature < Math.pow(10, maxTemperatureExponent)) {
       worldLeak = decayZeroOffset -
         Math.log10(Math.abs(temperature)+decayTruncate)/maxTemperatureExponent;
-      temperature *= worldLeak;
+      
+      temperature *= worldLeak
     }
     else {
-      temperature = 1e308
+      temperature = Math.pow(10, maxTemperatureExponent)
       infinity = true
     }
 

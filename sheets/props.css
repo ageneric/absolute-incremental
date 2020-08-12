@@ -119,6 +119,7 @@ button {
     overflow: hidden;
 }
 
+/* Progress fill bars */
 #absolute-zero-measure,
 #decay-measure {
   background-color: var(--cooldown);
